@@ -17,9 +17,6 @@ namespace NotifyServiceClient.NotifyServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/GetNotification", ReplyAction="http://tempuri.org/INotificationService/GetNotificationResponse")]
         string GetNotification(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/GetNotification", ReplyAction="http://tempuri.org/INotificationService/GetNotificationResponse")]
-        System.Threading.Tasks.Task<string> GetNotificationAsync(string name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -51,10 +48,6 @@ namespace NotifyServiceClient.NotifyServiceReference {
         
         public string GetNotification(string name) {
             return base.Channel.GetNotification(name);
-        }
-        
-        public System.Threading.Tasks.Task<string> GetNotificationAsync(string name) {
-            return base.Channel.GetNotificationAsync(name);
         }
     }
 }

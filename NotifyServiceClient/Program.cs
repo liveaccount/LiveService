@@ -10,8 +10,12 @@
         {
             using (var service = new NotificationServiceClient())
             {
-                Console.WriteLine("Enter your name: ");
-                Console.WriteLine(service.GetNotification(Console.ReadLine()));
+                do
+                {
+                    Console.WriteLine("Enter your name: ");
+                    Console.WriteLine(service.GetNotification(Console.ReadLine()));
+                }
+                while (Console.ReadKey(true).Key != ConsoleKey.A);
             }
 
             Console.ReadKey();            

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="164a90a9-dd79-46de-99d0-7fb986be359c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b4a63ee3-4a26-4911-bbd4-e7e0acb2ada8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
-    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
@@ -22,10 +21,10 @@
     <MetadataSource Address="http://localhost:6529/NotifyService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="NotificationService.wsdl" MetadataType="Wsdl" ID="5d65411e-582e-42cb-9b55-d45272d650c5" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?wsdl" />
-    <MetadataFile FileName="NotifyService.xsd" MetadataType="Schema" ID="86ed9511-68de-4ee5-8f17-c2d7742fce15" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd0" />
-    <MetadataFile FileName="NotifyService.disco" MetadataType="Disco" ID="6cf1d76d-6e51-4b13-8de2-671583aff9b7" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?disco" />
-    <MetadataFile FileName="NotifyService1.xsd" MetadataType="Schema" ID="efd90bb9-bf93-4e35-8bd0-401d21445ed0" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NotificationService.wsdl" MetadataType="Wsdl" ID="86c7d9a5-075f-4676-ab67-972a5d96bc3c" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?wsdl" />
+    <MetadataFile FileName="NotifyService.xsd" MetadataType="Schema" ID="d5673f0a-6e72-44a9-865e-0cb085b3ef6e" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NotifyService.disco" MetadataType="Disco" ID="6562ed51-e52d-49e1-9296-cb4bbcee0569" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?disco" />
+    <MetadataFile FileName="NotifyService1.xsd" MetadataType="Schema" ID="0b2e481b-85bf-49bc-97fd-8a6285b598bf" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
