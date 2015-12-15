@@ -12,8 +12,16 @@
             {
                 do
                 {
-                    Console.WriteLine("Enter your name: ");
-                    Console.WriteLine(service.GetNotification(Console.ReadLine()));
+                    try
+                    {
+                        Console.WriteLine("Enter your name: ");
+                        Console.WriteLine(service.GetNotification(Console.ReadLine()));
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.StackTrace);
+                    }
                 }
                 while (Console.ReadKey(true).Key != ConsoleKey.A);
             }
