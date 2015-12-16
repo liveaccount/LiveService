@@ -4,7 +4,7 @@
     
     public class NotificationService : INotificationService
     {
-        public String GetNotification(String name)
+        string INotificationService.GetNotification(string name)
         {
             return String.Format("Notification for {0}", name);
         }
