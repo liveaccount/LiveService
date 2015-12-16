@@ -51,6 +51,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\BroadcastServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -66,9 +71,20 @@
     <None Include="Service References\NotifyServiceReference\NotifyService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\BroadcastServiceReference\BroadcastService.wsdl" />
+    <None Include="Service References\BroadcastServiceReference\NotifyService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BroadcastServiceReference\NotifyService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BroadcastServiceReference\NotifyService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\NotifyServiceReference\" />
+    <WCFMetadataStorage Include="Service References\BroadcastServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\NotifyServiceReference\NotifyService.disco" />
@@ -81,6 +97,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\NotifyServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\NotifyService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BroadcastServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
