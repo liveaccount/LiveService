@@ -6,12 +6,12 @@
     using System.ServiceModel;
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class BroadcastorService : IBroadcastService
+    public class BroadcastService : IBroadcastService
     {
         private static Dictionary<string, IBroadcastCallback> clients;
         private static object locker = new object();
 
-        private BroadcastorService()
+        private BroadcastService()
         {
             clients = new Dictionary<string, IBroadcastCallback>();
         }

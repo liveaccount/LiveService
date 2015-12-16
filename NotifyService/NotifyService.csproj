@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BroadCastService.cs" />
+    <Compile Include="BroadcastService.cs" />
     <Compile Include="EventDataType.cs" />
     <Compile Include="IBroadcastCallback.cs" />
     <Compile Include="IBroadcastService.cs" />

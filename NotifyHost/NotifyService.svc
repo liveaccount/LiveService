@@ -1,1 +1,1 @@
-﻿<%@ServiceHost Service="NotifyService.NotificationService"%>
+﻿<%@ServiceHost Service="BroadcastService.BroadcastService"%>
