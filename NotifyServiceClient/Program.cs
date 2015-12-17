@@ -20,8 +20,8 @@
                 {
                     try
                     {
-                        //service.ClientCredentials.UserName.UserName = "kjjkj";
-                        //service.ClientCredentials.UserName.Password = "jjkj";                                              
+                        service.ClientCredentials.UserName.UserName = "kjjkj";
+                        service.ClientCredentials.UserName.Password = "jjkj";                                              
                         
                         service.OpenSession();
                     }
