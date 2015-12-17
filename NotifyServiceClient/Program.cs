@@ -23,7 +23,7 @@
                     {
                         service.ClientCredentials.UserName.UserName = "kjjkj";
                         service.ClientCredentials.UserName.Password = "jjkj";
-                        service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
+                        //service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
                         
                         service.OpenSession();
                     }
