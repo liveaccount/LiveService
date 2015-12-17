@@ -15,24 +15,18 @@ namespace NotifyServiceClient.BroadcastServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BroadcastServiceReference.IBroadcastService", CallbackContract=typeof(NotifyServiceClient.BroadcastServiceReference.IBroadcastServiceCallback))]
     public interface IBroadcastService {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcastService/RegisterClient")]
-        void RegisterClient(string clientName);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBroadcastService/OpenSession", ReplyAction="http://tempuri.org/IBroadcastService/OpenSessionResponse")]
+        void OpenSession();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcastService/RegisterClient")]
-        System.Threading.Tasks.Task RegisterClientAsync(string clientName);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcastService/NotifyServer")]
-        void NotifyServer(NotifyService.EventDataType eventData);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcastService/NotifyServer")]
-        System.Threading.Tasks.Task NotifyServerAsync(NotifyService.EventDataType eventData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBroadcastService/OpenSession", ReplyAction="http://tempuri.org/IBroadcastService/OpenSessionResponse")]
+        System.Threading.Tasks.Task OpenSessionAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IBroadcastServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IBroadcastService/BroadcastToClient")]
-        void BroadcastToClient(NotifyService.EventDataType eventData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IBroadcastService/OnCallback", ReplyAction="http://tempuri.org/IBroadcastService/OnCallbackResponse")]
+        void OnCallback();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,20 +57,12 @@ namespace NotifyServiceClient.BroadcastServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void RegisterClient(string clientName) {
-            base.Channel.RegisterClient(clientName);
+        public void OpenSession() {
+            base.Channel.OpenSession();
         }
         
-        public System.Threading.Tasks.Task RegisterClientAsync(string clientName) {
-            return base.Channel.RegisterClientAsync(clientName);
-        }
-        
-        public void NotifyServer(NotifyService.EventDataType eventData) {
-            base.Channel.NotifyServer(eventData);
-        }
-        
-        public System.Threading.Tasks.Task NotifyServerAsync(NotifyService.EventDataType eventData) {
-            return base.Channel.NotifyServerAsync(eventData);
+        public System.Threading.Tasks.Task OpenSessionAsync() {
+            return base.Channel.OpenSessionAsync();
         }
     }
 }

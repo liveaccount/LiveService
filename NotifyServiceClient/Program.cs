@@ -20,20 +20,10 @@
                 {
                     try
                     {
-                        service.ClientCredentials.UserName.UserName = "kjjkj";
-                        service.ClientCredentials.UserName.Password = "jjkj";
+                        //service.ClientCredentials.UserName.UserName = "kjjkj";
+                        //service.ClientCredentials.UserName.Password = "jjkj";                                              
                         
-                        
-                        Console.WriteLine("Enter your name: ");
-                        var name = Console.ReadLine();
-                        service.RegisterClient(name);
-                        Console.WriteLine("OK");
-                        service.NotifyServer(
-                                    new NotifyService.EventDataType()
-                                    {
-                                        ClientName = name,
-                                        EventMessage = "xxx"
-                                    });
+                        service.OpenSession();
                     }
                     catch (Exception ex)
                     {
@@ -59,10 +49,15 @@
         //    context = AsyncOperationManager.SynchronizationContext;
         //}
 
-        public void BroadcastToClient(NotifyService.EventDataType eventData)
-        {
-            //context.Post(new SendOrPostCallback(OnBroadcast), eventData);
+        //public void BroadcastToClient(NotifyService.EventDataType eventData)
+        //{
+        //    //context.Post(new SendOrPostCallback(OnBroadcast), eventData);
 
+        //    Console.WriteLine("> Received callback at {0}", DateTime.Now);
+        //}
+
+        public void OnCallback()
+        {
             Console.WriteLine("> Received callback at {0}", DateTime.Now);
         }
 

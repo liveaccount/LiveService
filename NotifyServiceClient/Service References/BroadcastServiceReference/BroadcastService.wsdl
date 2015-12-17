@@ -103,7 +103,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_RegisterClient_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_OpenSession_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -126,7 +126,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_NotifyServer_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_OpenSession_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -149,7 +149,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_BroadcastToClient_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_OnCallback_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IBroadcastService_OnCallback_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -175,51 +198,52 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:6529/NotifyService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:6529/NotifyService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:6529/NotifyService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NotifyService" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IBroadcastService_RegisterClient_InputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterClient" />
+  <wsdl:message name="IBroadcastService_OpenSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSession" />
   </wsdl:message>
-  <wsdl:message name="IBroadcastService_NotifyServer_InputMessage">
-    <wsdl:part name="parameters" element="tns:NotifyServer" />
+  <wsdl:message name="IBroadcastService_OpenSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSessionResponse" />
   </wsdl:message>
-  <wsdl:message name="IBroadcastService_BroadcastToClient_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:BroadcastToClient" />
+  <wsdl:message name="IBroadcastService_OnCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnCallback" />
+  </wsdl:message>
+  <wsdl:message name="IBroadcastService_OnCallback_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnCallbackResponse" />
   </wsdl:message>
   <wsdl:portType name="IBroadcastService">
-    <wsdl:operation name="RegisterClient">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcastService/RegisterClient" message="tns:IBroadcastService_RegisterClient_InputMessage" />
+    <wsdl:operation name="OpenSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcastService/OpenSession" message="tns:IBroadcastService_OpenSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBroadcastService/OpenSessionResponse" message="tns:IBroadcastService_OpenSession_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="NotifyServer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcastService/NotifyServer" message="tns:IBroadcastService_NotifyServer_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="BroadcastToClient">
-      <wsdl:output wsaw:Action="http://tempuri.org/IBroadcastService/BroadcastToClient" message="tns:IBroadcastService_BroadcastToClient_OutputCallbackMessage" />
+    <wsdl:operation name="OnCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IBroadcastService/OnCallback" message="tns:IBroadcastService_OnCallback_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IBroadcastService/OnCallbackResponse" message="tns:IBroadcastService_OnCallback_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IBroadcastService" type="tns:IBroadcastService">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="RegisterClient">
-      <soap12:operation soapAction="http://tempuri.org/IBroadcastService/RegisterClient" style="document" />
+    <wsdl:operation name="OpenSession">
+      <soap12:operation soapAction="http://tempuri.org/IBroadcastService/OpenSession" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_RegisterClient_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_OpenSession_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="NotifyServer">
-      <soap12:operation soapAction="http://tempuri.org/IBroadcastService/NotifyServer" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_NotifyServer_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="BroadcastToClient">
-      <soap12:operation soapAction="http://tempuri.org/IBroadcastService/BroadcastToClient" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_BroadcastToClient_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_OpenSession_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnCallback">
+      <soap12:operation soapAction="http://tempuri.org/IBroadcastService/OnCallback" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_OnCallback_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IBroadcastService_OnCallback_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

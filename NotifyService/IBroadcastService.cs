@@ -5,10 +5,14 @@
     [ServiceContract(CallbackContract = typeof(IBroadcastCallback))] 
     public interface IBroadcastService
     {
-        [OperationContract(IsOneWay = true)]
-        void RegisterClient(string clientName);
+        //[OperationContract(IsOneWay = true)]
+        //void RegisterClient(string clientName);
 
-        [OperationContract(IsOneWay = true)]
-        void NotifyServer(EventDataType eventData);
+        //[OperationContract(IsOneWay = true)]
+        //void NotifyServer(EventDataType eventData);
+
+
+        [OperationContract]
+        void OpenSession();
     }
 }

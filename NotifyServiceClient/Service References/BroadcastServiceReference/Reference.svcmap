@@ -23,10 +23,8 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="BroadcastService.wsdl" MetadataType="Wsdl" ID="882b3cb9-7913-4128-8f0a-e5237802f2ab" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?wsdl" />
-    <MetadataFile FileName="NotifyService.xsd" MetadataType="Schema" ID="5ef687e1-9c62-4c4f-9d3d-887fedc80953" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd2" />
     <MetadataFile FileName="NotifyService1.xsd" MetadataType="Schema" ID="5d154559-1268-4b0f-8f68-1da9b38d3d80" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd0" />
     <MetadataFile FileName="NotifyService.disco" MetadataType="Disco" ID="5badda42-8d1f-4d50-9874-76029dd3e194" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?disco" />
-    <MetadataFile FileName="NotifyService2.xsd" MetadataType="Schema" ID="d5e265f9-366a-4d0c-b99d-6e42d6bbe9b8" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

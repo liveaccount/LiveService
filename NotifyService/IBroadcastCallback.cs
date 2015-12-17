@@ -4,7 +4,10 @@
 
     public interface IBroadcastCallback
     {
-        [OperationContract(IsOneWay = true)]
-        void BroadcastToClient(EventDataType eventData);
+        //[OperationContract(IsOneWay = true)]
+        //void BroadcastToClient(EventDataType eventData);
+
+        [OperationContract]
+        void OnCallback();
     }
 }
