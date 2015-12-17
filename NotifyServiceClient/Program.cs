@@ -21,9 +21,9 @@
                 {
                     try
                     {
-                        service.ClientCredentials.UserName.UserName = "kjjkj";
-                        service.ClientCredentials.UserName.Password = "jjkj";
-                        //service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
+                        service.ClientCredentials.UserName.UserName = "test";
+                        service.ClientCredentials.UserName.Password = "test";
+                        service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
                         
                         service.OpenSession();
                     }
