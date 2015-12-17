@@ -8,13 +8,8 @@
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class BroadcastService : IBroadcastService
     {
-        private static Dictionary<string, IBroadcastCallback> clients;
+        private static Dictionary<string, IBroadcastCallback> clients = new Dictionary<string, IBroadcastCallback>();
         private static object locker = new object();
-
-        public BroadcastService()
-        {
-            clients = new Dictionary<string, IBroadcastCallback>();
-        }
 
         public void RegisterClient(string name)
         {

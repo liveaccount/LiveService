@@ -2,34 +2,34 @@
 {
     using System;
     using System.Threading;
-    using System.ComponentModel;
-
-    using NotifyService;
     using System.ServiceModel;
+    using System.ComponentModel;
+    using NotifyServiceClient.BroadcastServiceReference;
 
     class Program
     {
         static void Main(string[] args)
         {
             var callback = new BroadcastCallback();
-
-            //callback.SetHandler(HandleBroadcast);
-
             var context = new InstanceContext(callback);
 
 
-            using (var service = new BroadcastServiceReference.BroadcastServiceClient(new InstanceContext(new BroadcastCallback())))
+            using (var service = new BroadcastServiceClient(context))
             {
                 do
                 {
                     try
                     {
+                        service.ClientCredentials.UserName.UserName = "kjjkj";
+                        service.ClientCredentials.UserName.Password = "jjkj";
+                        
+                        
                         Console.WriteLine("Enter your name: ");
                         var name = Console.ReadLine();
                         service.RegisterClient(name);
                         Console.WriteLine("OK");
                         service.NotifyServer(
-                                    new EventDataType()
+                                    new NotifyService.EventDataType()
                                     {
                                         ClientName = name,
                                         EventMessage = "xxx"
@@ -48,37 +48,39 @@
         }
     }
 
-    public class BroadcastCallback : IBroadcastCallback
+    public class BroadcastCallback : IBroadcastServiceCallback
     {
-        private EventHandler handler;
-        private SynchronizationContext context;
+        //private EventHandler handler;
+        //private SynchronizationContext context;
 
-        public void SetHandler(EventHandler handler)
+        //public void SetHandler(EventHandler handler)
+        //{
+        //    this.handler = handler;
+        //    context = AsyncOperationManager.SynchronizationContext;
+        //}
+
+        public void BroadcastToClient(NotifyService.EventDataType eventData)
         {
-            this.handler = handler;
-            context = AsyncOperationManager.SynchronizationContext;
+            //context.Post(new SendOrPostCallback(OnBroadcast), eventData);
+
+            Console.WriteLine("> Received callback at {0}", DateTime.Now);
         }
 
-        public void BroadcastToClient(EventDataType eventData)
-        {
-            context.Post(new SendOrPostCallback(OnBroadcast), eventData);
-        }
+        //private void OnBroadcast(object eventData)
+        //{
+        //    handler.Invoke(eventData, null);
+        //}
 
-        private void OnBroadcast(object eventData)
-        {
-            handler.Invoke(eventData, null);
-        }
-
-        public void HandleBroadcast(object sender, EventArgs e)
-        {
-            try
-            {
-                var eventData = (EventDataType)sender;
-                var message = string.Format("{0} (from {1})", eventData.EventMessage, eventData.ClientName);
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        //public void HandleBroadcast(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        var eventData = (NotifyService.EventDataType)sender;
+        //        var message = string.Format("{0} (from {1})", eventData.EventMessage, eventData.ClientName);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //}
     }
 }
