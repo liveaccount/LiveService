@@ -3,6 +3,7 @@
     using System;
     using System.Threading;
     using System.ServiceModel;
+    using System.ServiceModel.Security;
     using System.ComponentModel;
     using NotifyServiceClient.BroadcastServiceReference;
 
@@ -21,7 +22,8 @@
                     try
                     {
                         service.ClientCredentials.UserName.UserName = "kjjkj";
-                        service.ClientCredentials.UserName.Password = "jjkj";                                              
+                        service.ClientCredentials.UserName.Password = "jjkj";
+                        service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
                         
                         service.OpenSession();
                     }
