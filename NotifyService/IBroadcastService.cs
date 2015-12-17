@@ -2,7 +2,7 @@
 {
     using System.ServiceModel;
 
-    [ServiceContract] 
+    [ServiceContract(CallbackContract = typeof(IBroadcastCallback))] 
     public interface IBroadcastService
     {
         [OperationContract(IsOneWay = true)]

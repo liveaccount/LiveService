@@ -11,14 +11,14 @@
         private static Dictionary<string, IBroadcastCallback> clients;
         private static object locker = new object();
 
-        private BroadcastService()
+        public BroadcastService()
         {
             clients = new Dictionary<string, IBroadcastCallback>();
         }
 
-        public void RegisterClient(string clientName)
+        public void RegisterClient(string name)
         {
-            if (clientName != null && clientName != "")
+            if (name != null && name != "")
             {
                 try
                 {
@@ -26,9 +26,9 @@
                     lock (locker)
                     {
                         //remove the old client
-                        if (clients.Keys.Contains(clientName))
-                            clients.Remove(clientName);
-                        clients.Add(clientName, callback);
+                        if (clients.Keys.Contains(name))
+                            clients.Remove(name);
+                        clients.Add(name, callback);
                     }
                 }
                 catch (Exception ex)
