@@ -1,44 +1,72 @@
 ﻿namespace NotifyServiceClient
 {
     using System;
-    using System.Threading;
-    using System.ServiceModel;
-    using System.ServiceModel.Security;
-    using System.ComponentModel;
     using NotifyServiceClient.BroadcastServiceReference;
+    
+    
+    using WebSocket4Net;
+    using SuperSocket.ClientEngine;
 
     class Program
     {
+        static WebSocket websocket;
+
         static void Main(string[] args)
         {
-            var callback = new BroadcastCallback();
-            var context = new InstanceContext(callback);
+            websocket = new WebSocket("ws://liveservice.apphb.com/NotifyService.svc", "", null, null, "UserAgent", "http://liveservice.apphb.com/", WebSocketVersion.DraftHybi10);
+
+            
+            websocket.Error += websocket_Error;
+            websocket.Opened += websocket_Opened;
+            //websocket.Closed += new EventHandler(websocket_Closed);
+            websocket.MessageReceived += websocket_MessageReceived;
+            websocket.Open();
 
 
-            using (var service = new BroadcastServiceClient(context))
-            {
-                do
-                {
-                    try
-                    {
-                        service.ClientCredentials.UserName.UserName = "test";
-                        service.ClientCredentials.UserName.Password = "test";
-                        service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;                  
-                        
-                        service.OpenSession();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
-                    }
-                }
-                while (Console.ReadKey(true).Key != ConsoleKey.A);
-            }
+            //var callback = new BroadcastCallback();
+            //var context = new InstanceContext(callback);
+
+            //using (var service = new BroadcastServiceClient(context))
+            //{
+            //    do
+            //    {
+            //        try
+            //        {
+            //            service.ClientCredentials.UserName.UserName = "test";
+            //            service.ClientCredentials.UserName.Password = "test";
+            //            service.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.None;
+
+            //            service.OpenSession();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Console.WriteLine(ex.Message);
+            //            Console.WriteLine(ex.StackTrace);
+            //        }
+            //    }
+            //    while (Console.ReadKey(true).Key != ConsoleKey.A);
+            //}
 
             Console.ReadKey();
         }
+
+        private static void websocket_Opened(object sender, EventArgs e)
+        {
+            websocket.Send("Hello World!");
+        }
+
+        private static void websocket_Error(object sender, ErrorEventArgs e)
+        {
+            Console.WriteLine(e.Exception.Message);
+        }
+
+        private static void websocket_MessageReceived(object sender, MessageReceivedEventArgs e)
+        {
+            websocket.Send(e.Message);
+        }
     }
+
+
 
     public class BroadcastCallback : IBroadcastServiceCallback
     {
