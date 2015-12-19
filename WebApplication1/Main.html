@@ -17,9 +17,9 @@
             $messages = document.getElementById('messages');
 
         if (typeof (WebSocket) !== 'undefined') {
-            socket = new WebSocket("ws://localhost/SimpleChatApplication/ChatHandler.ashx");
+            socket = new WebSocket("ws://localhost/ChatHandler.ashx");
         } else {
-            socket = new MozWebSocket("ws://localhost/SimpleChatApplication/ChatHandler.ashx");
+            socket = new MozWebSocket("ws://localhost/ChatHandler.ashx");
         }
 
         socket.onmessage = function (msg) {
