@@ -7,7 +7,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyService", "NotifyServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotifyServiceClient", "NotifyServiceClient\NotifyServiceClient.csproj", "{9E169216-38C7-4381-A715-2F5073A278E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication1\WebApplication.csproj", "{A4A62CA6-1226-43A9-8C69-C79473D1DBF2}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NotifyHost", "http://localhost:6529", "{EED28A18-4E50-4C3B-9CCD-56917DE959CA}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_6529"
+		Debug.AspNetCompiler.PhysicalPath = "NotifyHost\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6529\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_6529"
+		Release.AspNetCompiler.PhysicalPath = "NotifyHost\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_6529\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "NotifyHost\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +42,10 @@ Global
 		{9E169216-38C7-4381-A715-2F5073A278E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4A62CA6-1226-43A9-8C69-C79473D1DBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4A62CA6-1226-43A9-8C69-C79473D1DBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4A62CA6-1226-43A9-8C69-C79473D1DBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4A62CA6-1226-43A9-8C69-C79473D1DBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
