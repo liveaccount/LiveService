@@ -12,7 +12,7 @@
         var sock;
         function connectToServer() {
             try {
-                sock = new WebSocket("ws://localhost:8181/websock");
+                sock = new WebSocket("ws://localhost/websock");
                 //sock = new WebSocket("ws://192.168.0.100:8181/websock");
 
                 //sock = new WebSocket("ws://websockets.org:8787");
