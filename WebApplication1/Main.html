@@ -16,11 +16,7 @@
             $user = document.getElementById('user'),
             $messages = document.getElementById('messages');
 
-        if (typeof (WebSocket) !== 'undefined') {
-            socket = new WebSocket("ws://localhost/ChatHandler.ashx");
-        } else {
-            socket = new MozWebSocket("ws://localhost/ChatHandler.ashx");
-        }
+        socket = new WebSocket("ws://localhost/");
 
         socket.onmessage = function (msg) {
             var $el = document.createElement('p');
