@@ -1,0 +1,83 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>WebSocket Chat Test</title>
+	<script type="text/javascript">
+		function ping()
+		{
+			ws.send("");
+			setTimeout(ping,10000);
+		}
+
+		var ws
+		window.onload = function()
+		{
+			try
+			{
+				var div = document.getElementById("Chat");
+				var url = window.location.protocol.replace("http","ws") + "//" + window.location.host + "/";
+				div.appendChild(document.createTextNode("Create WebSocket to " + url));
+				ws = new WebSocket(url);
+				ws.onopen = function()
+				{
+					div.appendChild(document.createElement("br"));
+					div.appendChild(document.createTextNode("Open Connection to Server"));
+					div.scrollTop = div.scrollHeight;
+					ping();
+				};
+				ws.onclose = function()
+				{
+					div.appendChild(document.createElement("br"));
+					div.appendChild(document.createTextNode("Connection is closed"));
+					div.scrollTop = div.scrollHeight;
+				};
+			
+				ws.onerror = function(e)
+				{
+					alert("WebSocket.OnError : " + e.message);
+				}
+				ws.onmessage = function(e)
+				{
+					document.title = new Date().toTimeString();
+					div.appendChild(document.createElement("br"));
+					div.appendChild(document.createTextNode(e.data));
+					div.scrollTop = div.scrollHeight;
+				};
+			}
+			catch(e)
+			{
+				alert("Create WebSocket Error : " + e.message);
+			}
+
+			var form = document.getElementById("Message");
+			form.onsubmit = function()
+			{
+				try
+				{
+					ws.send(form["Text"].value);
+					form["Text"].value = "";
+				}
+				catch(e)
+				{
+					alert("WebSocket.Send : " + e.message);
+				}
+				finally
+				{
+					return false;
+				}
+			}
+
+		};
+	</script>
+</head>
+<body>
+	<div id="Chat" style="width: 70%; height: 300px; overflow-y: scroll;">
+		
+	</div>
+	<form id="Message"">
+	<input type="text" name="Text" style="width: 60%;" /><input type="submit" value="Send" />
+	</form>
+</body>
+</html>
