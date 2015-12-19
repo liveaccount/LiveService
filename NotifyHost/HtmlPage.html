@@ -1,10 +1,10 @@
 ﻿
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>WebSocket Chat Test</title>
-	<script type="text/javascript">
+    <title>WebSocket Chat Test</title>
+    <script type="text/javascript">
 		function ping()
 		{
 			ws.send("");
@@ -33,7 +33,7 @@
 					div.appendChild(document.createTextNode("Connection is closed"));
 					div.scrollTop = div.scrollHeight;
 				};
-			
+
 				ws.onerror = function(e)
 				{
 					alert("WebSocket.OnError : " + e.message);
@@ -70,14 +70,14 @@
 			}
 
 		};
-	</script>
+    </script>
 </head>
 <body>
-	<div id="Chat" style="width: 70%; height: 300px; overflow-y: scroll;">
-		
-	</div>
-	<form id="Message"">
-	<input type="text" name="Text" style="width: 60%;" /><input type="submit" value="Send" />
-	</form>
+    <div id="Chat" style="width: 70%; height: 300px; overflow-y: scroll;">
+
+    </div>
+    <form id="Message" ">
+	<input type=" text" name="Text" style="width: 60%;" /><input type="submit" value="Send" />
+    </form>
 </body>
 </html>
