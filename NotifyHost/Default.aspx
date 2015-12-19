@@ -12,7 +12,8 @@
         var sock;
         function connectToServer() {
             try {
-                sock = new WebSocket("ws://localhost:8181/websock");
+                var url = window.location.protocol.replace("http", "ws") + "//" + window.location.host + "/";
+                sock = new WebSocket(url);
                 //sock = new WebSocket("ws://192.168.0.100:8181/websock");
 
                 //sock = new WebSocket("ws://websockets.org:8787");
