@@ -16,7 +16,7 @@
             $user = document.getElementById('user'),
             $messages = document.getElementById('messages');
 
-        socket = new WebSocket("ws://localhost/");
+        socket = new WebSocket("ws://localhost/ChatHandler.ashx");
 
         socket.onmessage = function (msg) {
             var $el = document.createElement('p');
