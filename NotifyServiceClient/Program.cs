@@ -1,6 +1,7 @@
 ﻿namespace NotifyServiceClient
 {
     using System;
+    using System.Threading;
     using System.ServiceModel;
     
     using NotifyServiceClient.BroadcastServiceReference;
@@ -8,41 +9,73 @@
     using Alchemy;
     using Alchemy.Classes;
 
+    using WebSocket4Net;
+
     class Program
     {
-        static WebSocketClient websocket;
-
         static void Main(string[] args)
         {
-            var callback = new BroadcastCallback();
-            var context = new InstanceContext(callback);
+            //"ws://echo.websocket.org:80/echo"
 
-            using (var service = new BroadcastServiceClient(context))
-            {
-                do
-                {
-                    try
-                    {
-                        service.ClientCredentials.UserName.UserName = "test";
-                        service.ClientCredentials.UserName.Password = "test";
+            //"ws://websockettest-1.apphb.com/"
 
-                        service.OpenSession();
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                        Console.WriteLine(ex.StackTrace);
-                    }
-                }
-                while (Console.ReadKey(true).Key != ConsoleKey.A);
-            }
+            //"ws://liveservice.apphb.com/"
+
+            var client = new WebSocket("ws://liveservice.apphb.com/");
+            client.Opened += OnConnected;
+            client.Closed += OnDisconnect;
+            client.MessageReceived += OnReceive;
+
+            client.Open();
+
+            //var callback = new BroadcastCallback();
+            //var context = new InstanceContext(callback);
+
+            //using (var service = new BroadcastServiceClient(context))
+            //{
+            //    do
+            //    {
+            //        try
+            //        {
+            //            service.ClientCredentials.UserName.UserName = "test";
+            //            service.ClientCredentials.UserName.Password = "test";
+
+            //            service.OpenSession();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            Console.WriteLine(ex.Message);
+            //            Console.WriteLine(ex.StackTrace);
+            //        }
+            //    }
+            //    while (Console.ReadKey(true).Key != ConsoleKey.A);
+            //}
 
             Console.ReadKey();
         }
 
-        static void OnReceive(UserContext context)
+        private static void OnDisconnect(object sender, EventArgs context)
         {
-            Console.WriteLine("The server said : " + context.DataFrame.ToString());
+            Console.WriteLine("{0}: Disconnected", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+        }
+
+        private static void OnConnect(object sender, EventArgs context)
+        {
+            Console.WriteLine("{0}: Connecting...", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+        }
+
+        private static void OnConnected(object sender, EventArgs context)
+        {
+            Console.WriteLine("{0}: Connected", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+
+            var client = sender as WebSocket;
+
+            client.Send("Hey!");
+        }
+
+        private static void OnReceive(object sender, MessageReceivedEventArgs context)
+        {
+            Console.WriteLine("{0}: Message Received:\n{1}\n", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), context.Message);
         }
     }
 
