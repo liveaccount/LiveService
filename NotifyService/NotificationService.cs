@@ -32,16 +32,30 @@
         }
 
         public String StartServer()
-        {           
-            wssv.Start();
+        {
+            try
+            {
+                wssv.Start();
+            }
+            catch(Exception ex)
+            {
+                return String.Format("Error: {0}", ex.Message);
+            }
 
             return String.Format("Server started on {0}", wssv.Address.ToString());
         }
 
         public String StopServer()
         {
-            wssv.Stop();
-
+            try
+            {
+                wssv.Stop();
+            }
+            catch (Exception ex)
+            {
+                return String.Format("Error: {0}", ex.Message);
+            }
+            
             return String.Format("Server stoped");
         }
     }
