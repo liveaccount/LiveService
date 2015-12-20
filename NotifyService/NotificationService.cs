@@ -31,11 +31,14 @@
                 wssv.AddWebSocketService<Laputa>("/Laputa");
                 wssv.Start();
 
+                name = "started";
+
                 Thread.Sleep(120000);
 
                 wssv.Stop();
             });
 
+            Thread.Sleep(3000);
 
             return String.Format("Notification for {0}", name);
         }
