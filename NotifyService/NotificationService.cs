@@ -26,22 +26,13 @@
 
         public String GetNotification(String info)
         {
-            //ThreadPool.QueueUserWorkItem((ignore) =>
-            //{
-                var wssv = new WebSocketServer("ws://localhost:8021");
-                wssv.AddWebSocketService<Laputa>("/Laputa");
-                wssv.Start();
+            var wssv = new WebSocketServer("ws://localhost:8021");
+            wssv.AddWebSocketService<Laputa>("/Laputa");
+            wssv.Start();
 
-                info = "started";
+            info = "started";
 
-                //Thread.Sleep(120000);
-
-                //wssv.Stop();
-            //});
-
-            //Thread.Sleep(1500);
-
-            return String.Format("Notification for {0}", info);
+            return String.Format("Notification for {0}", wssv.Address.ToString());
         }
 
 
