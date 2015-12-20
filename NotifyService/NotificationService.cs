@@ -25,7 +25,7 @@
                 return String.Format("Error: {0}", ex.Message);
             }
 
-            return String.Format("Server started {0}", Environment.MachineName);
+            return String.Format("Server started {0}", wssv.Address);
         }
 
         public String StopServer()
