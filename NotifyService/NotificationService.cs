@@ -7,7 +7,7 @@
 
     public class NotificationService : INotificationService
     {
-        //private readonly HttpServer ws;
+        private readonly HttpServer ws;
 
         public NotificationService()
         {
