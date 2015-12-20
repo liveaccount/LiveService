@@ -10,7 +10,7 @@
 
         public NotificationService()
         {
-            wssv = new WebSocketServer("ws://liveservice.apphb.com:8080");
+            wssv = new WebSocketServer(8080);
             wssv.AddWebSocketService<Laputa>("/Laputa");
         }
         
@@ -25,7 +25,7 @@
                 return String.Format("Error: {0}", ex.Message);
             }
 
-            return String.Format("Server started");
+            return String.Format("Server started {0}", Environment.MachineName);
         }
 
         public String StopServer()
