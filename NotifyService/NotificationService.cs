@@ -10,7 +10,7 @@
 
         public NotificationService()
         {
-            wssv = new WebSocketServer(8080);
+            wssv = new WebSocketServer(System.Net.IPAddress.Any, 8080);
             wssv.AddWebSocketService<Laputa>("/Laputa");
         }
         
