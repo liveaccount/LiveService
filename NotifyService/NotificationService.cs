@@ -10,8 +10,11 @@
 
         public NotificationService()
         {
-            wssv = new WebSocketServer(System.Net.IPAddress.Any, 80);
-            wssv.AddWebSocketService<Laputa>("/Laputa");
+            wssv = new WebSocketServer();
+
+            wssv.Start();
+
+            //wssv.AddWebSocketService<Laputa>("/Laputa");
         }
         
         public String StartServer()
