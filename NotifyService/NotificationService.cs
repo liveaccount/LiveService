@@ -1,41 +1,41 @@
 ﻿namespace NotifyService
 {
     using System;
+    using System.Web;
+    using System.Web.UI;
     using WebSocketSharp;
     using WebSocketSharp.Server;
 
     public class NotificationService : INotificationService
     {
-        private readonly WebSocketServer wssv;
+        private readonly HttpServer ws;
+        //private readonly WebSocketServer ws;
 
         public NotificationService()
         {
-            wssv = new WebSocketServer();
-
-            wssv.Start();
-
-            //wssv.AddWebSocketService<Laputa>("/Laputa");
+            ws = new HttpServer();
+            ws.AddWebSocketService<Laputa>("/Laputa");
         }
         
         public String StartServer()
         {
             try
             {
-                wssv.Start();
+                ws.Start();
             }
             catch(Exception ex)
             {
                 return String.Format("Error: {0}", ex.Message);
             }
 
-            return String.Format("Server started {0}", wssv.Address);
+            return String.Format("Server started {0}", ws.Address);
         }
 
         public String StopServer()
         {
             try
             {
-                wssv.Stop();
+                ws.Stop();
             }
             catch (Exception ex)
             {
