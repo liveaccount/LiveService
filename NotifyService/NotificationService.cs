@@ -27,7 +27,7 @@
         {
             ThreadPool.QueueUserWorkItem((ignore) =>
             {
-                var wssv = new WebSocketServer(6521);
+                var wssv = new WebSocketServer();
                 wssv.AddWebSocketService<Laputa>("/Laputa");
                 wssv.Start();
 
