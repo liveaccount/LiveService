@@ -10,15 +10,15 @@
 
         public NotificationService()
         {
-            wssv = new WebSocketServer("ws://liveservice.apphb.com");
-            wssv.AddWebSocketService<Laputa>("/Laputa");
+            //wssv = new WebSocketServer("ws://liveservice.apphb.com");
+            //wssv.AddWebSocketService<Laputa>("/Laputa");
         }
         
         public String StartServer()
         {
             try
             {
-                wssv.Start();
+                //wssv.Start();
             }
             catch(Exception ex)
             {
@@ -32,7 +32,7 @@
         {
             try
             {
-                wssv.Stop();
+                //wssv.Stop();
             }
             catch (Exception ex)
             {
