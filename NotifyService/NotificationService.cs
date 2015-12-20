@@ -27,11 +27,13 @@
         {
             ThreadPool.QueueUserWorkItem((ignore) =>
             {
-                var wssv = new WebSocketServer("ws://localhost");
+                var wssv = new WebSocketServer("ws://liveservice.apphb.com");
                 wssv.AddWebSocketService<Laputa>("/Laputa");
                 wssv.Start();
 
-                Thread.Sleep(300000);
+                Thread.Sleep(120000);
+
+                wssv.Stop();
             });
 
 
