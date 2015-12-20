@@ -1,30 +1,38 @@
 ﻿namespace NotifyService
 {
-    using SuperSocket.SocketBase;
-    using SuperSocket.SocketBase.Config;
-    using SuperSocket.SocketEngine;
-    using SuperWebSocket;
     using System;
     using System.Net;
     using System.Net.Sockets;
     using System.Threading;
+    using WebSocketSharp;
+    using WebSocketSharp.Server;
     
     public class NotificationService : INotificationService
     {
 
+        public class Laputa : WebSocketBehavior
+        {
+            protected override void OnMessage(MessageEventArgs e)
+            {
+                var msg = e.Data == "BALUS"
+                          ? "I've been balused already..."
+                          : "I'm not available now.";
+
+                Send(msg);
+            }
+        }
+
+
         public String GetNotification(String name)
         {
-            var wsServer = new WebSocketServer();
-
-            wsServer.Setup(new RootConfig(), new ServerConfig
+            ThreadPool.QueueUserWorkItem((ignore) =>
             {
-                Name = "SuperWebSocket",
-                Ip = "Any",
-                Port = 8181,
-                Mode = SocketMode.Tcp,
-            }, new SocketServerFactory());
+                var wssv = new WebSocketServer("ws://localhost");
+                wssv.AddWebSocketService<Laputa>("/Laputa");
+                wssv.Start();
 
-            wsServer.Start();
+                Thread.Sleep(300000);
+            });
 
 
             return String.Format("Notification for {0}", name);
