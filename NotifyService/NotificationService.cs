@@ -28,7 +28,7 @@
             ThreadPool.QueueUserWorkItem((ignore) =>
             {
                 var wssv = new WebSocketServer();
-                wssv.AddWebSocketService<Laputa>("/Laputa");
+                wssv.ReuseAddress = true;
                 wssv.Start();
 
                 name = "started";
