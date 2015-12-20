@@ -1,13 +1,9 @@
 ﻿namespace NotifyService
 {
     using System;
-    using System.Net;
-    using System.Net.NetworkInformation;
-    using System.Net.Sockets;
-    using System.Threading;
     using WebSocketSharp;
     using WebSocketSharp.Server;
-    
+
     public class NotificationService : INotificationService
     {
         private readonly WebSocketServer wssv;
@@ -17,20 +13,7 @@
             wssv = new WebSocketServer("ws://liveservice.apphb.com");
             wssv.AddWebSocketService<Laputa>("/Laputa");
         }
-
-
-        public class Laputa : WebSocketBehavior
-        {
-            protected override void OnMessage(MessageEventArgs e)
-            {
-                var msg = e.Data == "BALUS"
-                          ? "I've been balused already..."
-                          : "I'm not available now.";
-
-                Send(msg);
-            }
-        }
-
+        
         public String StartServer()
         {
             try
@@ -57,6 +40,18 @@
             }
             
             return String.Format("Server stoped");
+        }
+    }
+
+    public class Laputa : WebSocketBehavior
+    {
+        protected override void OnMessage(MessageEventArgs e)
+        {
+            var msg = e.Data == "BALUS"
+                      ? "I've been balused already..."
+                      : "I'm not available now.";
+
+            Send(msg);
         }
     }
 }
