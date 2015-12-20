@@ -7,6 +7,9 @@
     public interface INotificationService
     {
         [OperationContract]
-        String GetNotification(String name);
+        String StartServer();
+
+        [OperationContract]
+        String StopServer();
     }
 }

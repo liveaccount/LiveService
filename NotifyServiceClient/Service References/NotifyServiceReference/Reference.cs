@@ -15,11 +15,17 @@ namespace NotifyServiceClient.NotifyServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="NotifyServiceReference.INotificationService")]
     public interface INotificationService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/GetNotification", ReplyAction="http://tempuri.org/INotificationService/GetNotificationResponse")]
-        string GetNotification(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/StartServer", ReplyAction="http://tempuri.org/INotificationService/StartServerResponse")]
+        string StartServer();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/GetNotification", ReplyAction="http://tempuri.org/INotificationService/GetNotificationResponse")]
-        System.Threading.Tasks.Task<string> GetNotificationAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/StartServer", ReplyAction="http://tempuri.org/INotificationService/StartServerResponse")]
+        System.Threading.Tasks.Task<string> StartServerAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/StopServer", ReplyAction="http://tempuri.org/INotificationService/StopServerResponse")]
+        string StopServer();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/INotificationService/StopServer", ReplyAction="http://tempuri.org/INotificationService/StopServerResponse")]
+        System.Threading.Tasks.Task<string> StopServerAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +55,20 @@ namespace NotifyServiceClient.NotifyServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public string GetNotification(string name) {
-            return base.Channel.GetNotification(name);
+        public string StartServer() {
+            return base.Channel.StartServer();
         }
         
-        public System.Threading.Tasks.Task<string> GetNotificationAsync(string name) {
-            return base.Channel.GetNotificationAsync(name);
+        public System.Threading.Tasks.Task<string> StartServerAsync() {
+            return base.Channel.StartServerAsync();
+        }
+        
+        public string StopServer() {
+            return base.Channel.StopServer();
+        }
+        
+        public System.Threading.Tasks.Task<string> StopServerAsync() {
+            return base.Channel.StopServerAsync();
         }
     }
 }

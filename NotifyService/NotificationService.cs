@@ -10,6 +10,14 @@
     
     public class NotificationService : INotificationService
     {
+        private readonly WebSocketServer wssv;
+
+        public NotificationService()
+        {
+            wssv = new WebSocketServer("ws://liveservice.apphb.com");
+            wssv.AddWebSocketService<Laputa>("/Laputa");
+        }
+
 
         public class Laputa : WebSocketBehavior
         {
@@ -23,31 +31,18 @@
             }
         }
 
-
-        public String GetNotification(String info)
-        {
-            var wssv = new WebSocketServer("ws://localhost:8021");
-            wssv.AddWebSocketService<Laputa>("/Laputa");
+        public String StartServer()
+        {           
             wssv.Start();
 
-            info = "started";
-
-            return String.Format("Notification for {0}", wssv.Address.ToString());
+            return String.Format("Server started on {0}", wssv.Address.ToString());
         }
 
-
-        private string GetPorts()
+        public String StopServer()
         {
-            var info = String.Empty;
+            wssv.Stop();
 
-            var ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
-
-            foreach (TcpConnectionInformation tcpi in ipGlobalProperties.GetActiveTcpConnections())
-            {
-                info += tcpi.LocalEndPoint.Port + Environment.NewLine;
-            }
-
-            return info;
+            return String.Format("Server stoped");
         }
     }
 }
