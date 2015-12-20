@@ -6,12 +6,12 @@
 
     public class NotificationService : INotificationService
     {
-        //private readonly WebSocketServer wssv;
+        private readonly WebSocketServer wssv;
 
         public NotificationService()
         {
-            //wssv = new WebSocketServer("ws://liveservice.apphb.com");
-            //wssv.AddWebSocketService<Laputa>("/Laputa");
+            wssv = new WebSocketServer("ws://liveservice.apphb.com:8080");
+            wssv.AddWebSocketService<Laputa>("/Laputa");
         }
         
         public String StartServer()
