@@ -2,6 +2,7 @@
 {
     using System;
     using System.Net;
+    using System.Net.NetworkInformation;
     using System.Net.Sockets;
     using System.Threading;
     using WebSocketSharp;
@@ -23,24 +24,39 @@
         }
 
 
-        public String GetNotification(String name)
+        public String GetNotification(String info)
         {
-            ThreadPool.QueueUserWorkItem((ignore) =>
-            {
-                var wssv = new WebSocketServer();
-                wssv.ReuseAddress = true;
+            //ThreadPool.QueueUserWorkItem((ignore) =>
+            //{
+                var wssv = new WebSocketServer("ws://localhost:8021");
+                wssv.AddWebSocketService<Laputa>("/Laputa");
                 wssv.Start();
 
-                name = "started";
+                info = "started";
 
-                Thread.Sleep(120000);
+                //Thread.Sleep(120000);
 
-                wssv.Stop();
-            });
+                //wssv.Stop();
+            //});
 
-            Thread.Sleep(3000);
+            //Thread.Sleep(1500);
 
-            return String.Format("Notification for {0}", name);
+            return String.Format("Notification for {0}", info);
+        }
+
+
+        private string GetPorts()
+        {
+            var info = String.Empty;
+
+            var ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
+
+            foreach (TcpConnectionInformation tcpi in ipGlobalProperties.GetActiveTcpConnections())
+            {
+                info += tcpi.LocalEndPoint.Port + Environment.NewLine;
+            }
+
+            return info;
         }
     }
 }

@@ -13,7 +13,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NotifyHost", "http://localhost:6529", "{EED28A18-4E50-4C3B-9CCD-56917DE959CA}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
 		ProjectReferences = "{d970fc59-f153-45fb-971d-4314531be4ec}|NotifyService.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_6529"
 		Debug.AspNetCompiler.PhysicalPath = "NotifyHost\"
@@ -35,22 +35,22 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "NotifyHost", "http://localh
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D970FC59-F153-45FB-971D-4314531BE4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D970FC59-F153-45FB-971D-4314531BE4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D970FC59-F153-45FB-971D-4314531BE4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D970FC59-F153-45FB-971D-4314531BE4EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E169216-38C7-4381-A715-2F5073A278E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E169216-38C7-4381-A715-2F5073A278E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{D970FC59-F153-45FB-971D-4314531BE4EC}.Debug|x86.ActiveCfg = Debug|x86
+		{D970FC59-F153-45FB-971D-4314531BE4EC}.Debug|x86.Build.0 = Debug|x86
+		{D970FC59-F153-45FB-971D-4314531BE4EC}.Release|x86.ActiveCfg = Debug|x86
+		{D970FC59-F153-45FB-971D-4314531BE4EC}.Release|x86.Build.0 = Debug|x86
+		{9E169216-38C7-4381-A715-2F5073A278E4}.Debug|x86.ActiveCfg = Debug|x86
+		{9E169216-38C7-4381-A715-2F5073A278E4}.Debug|x86.Build.0 = Debug|x86
+		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|x86.ActiveCfg = Debug|x86
+		{9E169216-38C7-4381-A715-2F5073A278E4}.Release|x86.Build.0 = Debug|x86
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|x86.ActiveCfg = Debug|Any CPU
+		{EED28A18-4E50-4C3B-9CCD-56917DE959CA}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
