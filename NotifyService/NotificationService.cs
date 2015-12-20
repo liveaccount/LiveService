@@ -6,7 +6,7 @@
 
     public class NotificationService : INotificationService
     {
-        private readonly WebSocketServer wssv;
+        //private readonly WebSocketServer wssv;
 
         public NotificationService()
         {
@@ -25,7 +25,7 @@
                 return String.Format("Error: {0}", ex.Message);
             }
 
-            return String.Format("Server started on {0}", wssv.Address.ToString());
+            return String.Format("Server started");
         }
 
         public String StopServer()
