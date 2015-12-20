@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="164a90a9-dd79-46de-99d0-7fb986be359c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:6529/NotifyService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NotificationService.wsdl" MetadataType="Wsdl" ID="5d65411e-582e-42cb-9b55-d45272d650c5" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?wsdl" />
+    <MetadataFile FileName="NotifyService.xsd" MetadataType="Schema" ID="86ed9511-68de-4ee5-8f17-c2d7742fce15" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NotifyService.disco" MetadataType="Disco" ID="6cf1d76d-6e51-4b13-8de2-671583aff9b7" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?disco" />
+    <MetadataFile FileName="NotifyService1.xsd" MetadataType="Schema" ID="efd90bb9-bf93-4e35-8bd0-401d21445ed0" SourceId="1" SourceUrl="http://localhost:6529/NotifyService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
