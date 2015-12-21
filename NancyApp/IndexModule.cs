@@ -14,7 +14,7 @@
         public IndexModule()
         {
             server = new HttpServer();
-            server.AddWebSocketService<Test>("/websocket");
+            server.AddWebSocketService<Test>("/test");
 
             Get["/"] = parameters =>
             {
