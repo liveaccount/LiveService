@@ -13,11 +13,13 @@
 
         public Bootstrapper()
         {
-
-            var uri = string.Format("ws://{0}:{1}", Dns.GetHostName(), 80);
-
-            ws = new WebSocketServer(uri);
+            ws = new WebSocketServer();
             ws.AddWebSocketService<Laputa>("/Laputa");
+        }
+
+        public static string Path()
+        {
+            return string.Format("ws://{0}:{1}", Dns.GetHostName(), 80);
         }
 
         protected override void ApplicationStartup(Nancy.TinyIoc.TinyIoCContainer container, Nancy.Bootstrapper.IPipelines pipelines)
