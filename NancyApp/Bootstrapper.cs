@@ -10,7 +10,7 @@
 
         public Bootstrapper()
         {
-            ws = new WebSocketServer();
+            ws = new WebSocketServer(8080);
             ws.AddWebSocketService<Laputa>("/Laputa");
         }
 

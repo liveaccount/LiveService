@@ -10,6 +10,11 @@
             {
                 return View["index"];
             };
+
+            Get["/Laputa"] = parameters =>
+            {
+                return 200;
+            };
         }
     }
 }
