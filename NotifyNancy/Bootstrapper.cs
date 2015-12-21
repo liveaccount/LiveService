@@ -1,6 +1,9 @@
 ﻿namespace NotifyNancy
 {
     using Nancy;
+    using System;
+    using System.Net;
+    using System.Web;
     using WebSocketSharp;
     using WebSocketSharp.Server;
 
@@ -10,7 +13,10 @@
 
         public Bootstrapper()
         {
-            ws = new WebSocketServer("ws://liveservice.apphb.com");
+
+            var uri = string.Format("ws://{0}:{1}", Dns.GetHostName(), 80);
+
+            ws = new WebSocketServer(uri);
             ws.AddWebSocketService<Laputa>("/Laputa");
         }
 
