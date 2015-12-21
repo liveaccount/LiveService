@@ -7,6 +7,7 @@
     using WebSocketSharp;
     using WebSocketSharp.Server;
     using System.Web;
+    using Nancy.Hosting.Aspnet;
 
     public class IndexModule : NancyModule
     {
@@ -26,6 +27,8 @@
             {
                 try
                 {
+
+
                     server.Start();
                 }
                 catch (Exception ex)
@@ -33,11 +36,11 @@
                     return ex.Message;
                 }
 
-                var message = String.Empty;
+                var message = String.Format("{0}{1}", server.RootPath, "<br>");
 
                 if (server.IsListening)
                 {
-                    message = String.Format("Server started on port {0}, and providing services:{1}", server.Port, "<br>");
+                    message += String.Format("Server started on port {0}, and providing services:{1}", server.Port, "<br>");
                     foreach (var host in server.WebSocketServices.Hosts)
                         message += String.Format("- {0}{1}", host.Path, "<br>");
                 }
