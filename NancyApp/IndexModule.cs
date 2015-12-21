@@ -6,6 +6,7 @@
 
     using WebSocketSharp;
     using WebSocketSharp.Server;
+    using System.Web;
 
     public class IndexModule : NancyModule
     {
@@ -14,7 +15,7 @@
         public IndexModule()
         {
             server = new HttpServer();
-            server.AddWebSocketService<Test>("/test");
+            server.AddWebSocketService<Test>("/");
 
             Get["/"] = parameters =>
             {
@@ -37,8 +38,8 @@
                 if (server.IsListening)
                 {
                     message = String.Format("Server started on port {0}, and providing services:{1}", server.Port, "<br>");
-                    foreach (var path in server.WebSocketServices.Paths)
-                        message += String.Format("- {0}{1}", path, "<br>");
+                    foreach (var host in server.WebSocketServices.Hosts)
+                        message += String.Format("- {0}{1}", host.Path, "<br>");
                 }
 
                 return message;
@@ -50,11 +51,7 @@
     {
         protected override void OnMessage(MessageEventArgs e)
         {
-            var msg = e.Data == "Test"
-                      ? "Test OK."
-                      : "Test FAILED...";
-
-            Send(msg);
+            Send("Test OK.");
         }
     }
 }
