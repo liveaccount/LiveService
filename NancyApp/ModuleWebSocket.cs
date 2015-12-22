@@ -5,7 +5,6 @@
 
     using Nancy.AspNet.WebSockets;
 
-
     public class ModuleWebSocket : WebSocketNancyModule
     {
         public ModuleWebSocket()//(IHandlerBagDictionary handlerBagDictionary) : base("/websocket")
@@ -14,7 +13,7 @@
 
             WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
             {
-                var handlerBag = handlerBagDictionary.GetOrAdd(Guid.NewGuid().ToString());
+                var handlerBag = handlerBagDictionary.GetOrAdd((string)Request.Query.name ?? "Unknown");
                 return handlerBag.CreateHandler();
             };
         }
