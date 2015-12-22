@@ -1,17 +1,19 @@
 ﻿namespace NancyApp
 {
+    using System.Collections.Concurrent;
+
     using Nancy.AspNet.WebSockets;
+    using System;
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
         public ModuleWebSocket()
         {
-            WebSocket["/websocket"] = _ => CreateWebSocketHandler();
-        }
-
-        private IWebSocketHandler CreateWebSocketHandler()
-        {
-            return new WebSocketHandler();
+            WebSocket["/websocket"] = _ =>
+            {
+                var bag = new HandlerBag();
+                return bag.CreateHandler();
+            };
         }
     }
 
@@ -19,16 +21,29 @@
     {
         private IWebSocketClient client;
 
+        private readonly HandlerBag handlers;
+
+        public WebSocketHandler(HandlerBag handlers)
+        {
+            this.handlers = handlers;
+        }
+
         private void SendToAll(byte[] data)
         {
-            client.Send(data);
+            handlers.ForEachHandler(handler =>
+            {
+                handler.client.Send(data);
+            });
         }
 
         private void SendToAll(string message)
         {
-            client.Send(message);
+            handlers.ForEachHandler(handler =>
+            {
+                handler.client.Send(message);
+            });
         }
-        
+
         public void OnOpen(IWebSocketClient client)
         {
             this.client = client;
@@ -54,6 +69,36 @@
         public void OnError()
         {
             SendToAll("Error");
+        }
+
+        public override int GetHashCode()
+        {
+            return client.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as WebSocketHandler;
+
+            return other != null ? client.Equals(other.client) : false;
+        }
+    }
+
+    public class HandlerBag : ConcurrentBag<WebSocketHandler>
+    {
+        public WebSocketHandler CreateHandler()
+        {
+            var handler = new WebSocketHandler(this);
+            this.Add(handler);
+            return handler;
+        }
+
+        public void ForEachHandler(Action<WebSocketHandler> action)
+        {
+            foreach (var handler in this)
+            {
+                action(handler);
+            }
         }
     }
 }
