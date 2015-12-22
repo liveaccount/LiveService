@@ -7,10 +7,9 @@
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
-        public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary) : base("/websocket")
+        public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary) 
+            : base("/websocket")
         {
-            //var handlerBagDictionary = new HandlerBagDictionary();
-
             WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
             {
                 var handlerBag = handlerBagDictionary.GetOrAdd((string)Request.Query.name ?? "Unknown");
@@ -113,26 +112,6 @@
             {
                 action(handler);
             }
-        }
-    }
-
-    public interface IHandlerBagDictionary
-    {
-        HandlerBag GetOrAdd(String id);
-    }
-
-    public class HandlerBagDictionary : IHandlerBagDictionary
-    {
-        private readonly ConcurrentDictionary<String, HandlerBag> dictionary;
-
-        public HandlerBagDictionary()
-        {
-            dictionary = new ConcurrentDictionary<string, HandlerBag>();
-        }
-
-        public HandlerBag GetOrAdd(String id)
-        {
-            return dictionary.GetOrAdd(id, n => new HandlerBag(n));
         }
     }
 }

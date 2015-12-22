@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="HandlerBagDictionary.cs" />
     <Compile Include="ModuleIndex.cs">
       <SubType>Code</SubType>
     </Compile>
