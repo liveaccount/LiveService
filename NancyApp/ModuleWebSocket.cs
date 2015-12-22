@@ -13,7 +13,7 @@
             WebSocket["/{path}"] = _ =>
             {
                 var handlerBag = handlerBagDictionary.GetOrAdd((String)_.path);
-                return handlerBag.CreateHandler();
+                return new HandlerBag().CreateHandler();//handlerBag.CreateHandler();
             };
         }
     }
