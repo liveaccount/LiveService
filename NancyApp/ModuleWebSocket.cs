@@ -23,10 +23,12 @@
     {
         private IWebSocketClient client;
 
+        private readonly String name;
         private readonly HandlerBag handlers;
 
-        public WebSocketHandler(HandlerBag handlers)
+        public WebSocketHandler(HandlerBag handlers, String name)
         {
+            this.name = name;
             this.handlers = handlers;
         }
 
@@ -52,7 +54,7 @@
         {
             this.client = client;
 
-            SendToAll(string.Format("User connected."));
+            SendToAll(string.Format("User {0} connected.", name));
         }
 
         public void OnData(byte[] data)
@@ -62,12 +64,12 @@
 
         public void OnMessage(string message)
         {
-            SendToAll(string.Format("User says: {0}", message));
+            SendToAll(string.Format("User {0} says: {1}", name, message));
         }
 
         public void OnClose()
         {
-            SendToAll(string.Format("User disconnected."));
+            SendToAll(string.Format("User {0} disconnected.", name));
         }
 
         public void OnError()
@@ -90,9 +92,16 @@
 
     public class HandlerBag : ConcurrentBag<WebSocketHandler>
     {
+        private readonly String name;
+
+        public HandlerBag(String name)
+        {
+            this.name = name;
+        }
+
         public WebSocketHandler CreateHandler()
         {
-            var handler = new WebSocketHandler(this);
+            var handler = new WebSocketHandler(this, name);
             this.Add(handler);
             return handler;
         }
@@ -122,7 +131,7 @@
 
         public HandlerBag GetOrAdd(String id)
         {
-            return dictionary.GetOrAdd(id, new HandlerBag());
+            return dictionary.GetOrAdd(id, n => new HandlerBag(n));
         }
     }
 }
