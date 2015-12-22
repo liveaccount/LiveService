@@ -17,21 +17,22 @@
 
     public class Handler : IWebSocketHandler
     {
-        private IWebSocketClient _client;
+        private IWebSocketClient client;
 
         private void SendToAll(string message)
         {
-            _client.Send(message);
+            client.Send(message);
         }
 
         private void SendToAll(byte[] message)
         {
-            _client.Send(message);
+            client.Send(message);
         }
 
         public void OnOpen(IWebSocketClient client)
         {
-            _client = client;
+            this.client = client;
+
             SendToAll(string.Format("User connected to drawing board"));
         }
 

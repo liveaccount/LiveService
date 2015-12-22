@@ -16,7 +16,7 @@
                 AllowInsecureHttp = false,
             });
 
-            app.UseNancy();
+            //app.UseNancy();
         }
 
         public class AppHarborMiddleware : OwinMiddleware
