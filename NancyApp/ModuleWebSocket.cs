@@ -7,12 +7,13 @@
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
-        public ModuleWebSocket()
+        public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary)
+            : base("/websocket")
         {
-            WebSocket["/websocket"] = _ =>
+            WebSocket["/{path}"] = _ =>
             {
-                var bag = new HandlerBag();
-                return bag.CreateHandler();
+                var handlerBag = handlerBagDictionary.GetOrAdd((String)_.path);
+                return handlerBag.CreateHandler();
             };
         }
     }
@@ -32,6 +33,7 @@
         {
             handlers.ForEachHandler(handler =>
             {
+                // if(handler != this)
                 handler.client.Send(data);
             });
         }
@@ -40,6 +42,7 @@
         {
             handlers.ForEachHandler(handler =>
             {
+                // if(handler != this)
                 handler.client.Send(message);
             });
         }
@@ -99,6 +102,26 @@
             {
                 action(handler);
             }
+        }
+    }
+
+    public interface IHandlerBagDictionary
+    {
+        HandlerBag GetOrAdd(String id);
+    }
+
+    public class HandlerBagDictionary : IHandlerBagDictionary
+    {
+        private readonly ConcurrentDictionary<String, HandlerBag> dictionary;
+
+        public HandlerBagDictionary()
+        {
+            dictionary = new ConcurrentDictionary<string, HandlerBag>();
+        }
+
+        public HandlerBag GetOrAdd(String id)
+        {
+            return dictionary.GetOrAdd(id, new HandlerBag());
         }
     }
 }
