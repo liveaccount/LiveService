@@ -7,9 +7,9 @@
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
-        public ModuleWebSocket()//(IHandlerBagDictionary handlerBagDictionary) : base("/websocket")
+        public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary) : base("/websocket")
         {
-            var handlerBagDictionary = new HandlerBagDictionary();
+            //var handlerBagDictionary = new HandlerBagDictionary();
 
             WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
             {
