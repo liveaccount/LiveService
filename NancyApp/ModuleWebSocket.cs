@@ -64,7 +64,7 @@
 
         public void OnMessage(string message)
         {
-            SendToAll(string.Format("User {0} says: {1}", name, message));
+            SendToAll(string.Format("User {0} says: {1} count {2}", name, message, handlers.Count));
         }
 
         public void OnClose()
@@ -95,6 +95,7 @@
         private readonly String name;
 
         public HandlerBag(String name)
+            : base()
         {
             this.name = name;
         }
