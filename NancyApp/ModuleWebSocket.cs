@@ -11,11 +11,11 @@
 
         private IWebSocketHandler CreateWebSocketHandler()
         {
-            return new Handler();
+            return new WebSocketHandler();
         }
     }
 
-    public class Handler : IWebSocketHandler
+    public class WebSocketHandler : IWebSocketHandler
     {
         private IWebSocketClient client;
 
