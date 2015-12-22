@@ -4,9 +4,6 @@
     using Nancy.TinyIoc;
     using Nancy.Bootstrapper;
 
-    using WebSocketSharp;
-    using WebSocketSharp.Server;
-
     public class Bootstrapper : DefaultNancyBootstrapper
     {
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
