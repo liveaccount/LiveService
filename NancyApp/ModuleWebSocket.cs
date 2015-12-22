@@ -1,23 +1,15 @@
 ﻿namespace NancyApp
 {
-    using Nancy;
     using Nancy.AspNet.WebSockets;
-    using System;
-    using System.Collections.Generic;
 
-    public class IndexModule : WebSocketNancyModule
+    public class ModuleWebSocket : WebSocketNancyModule
     {
-        public IndexModule()
+        public ModuleWebSocket()
         {
-            Get["/"] = _ =>
-            {
-                return View["index"];
-            };
-
             WebSocket["/websocket"] = _ => CreateWebSocketHandler();
         }
 
-        private Handler CreateWebSocketHandler()
+        private IWebSocketHandler CreateWebSocketHandler()
         {
             return new Handler();
         }
