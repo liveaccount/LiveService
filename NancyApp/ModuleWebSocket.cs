@@ -7,12 +7,11 @@
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
-        public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary) 
-            : base("/websocket")
+        public ModuleWebSocket()
         {
             WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
             {
-                var handlerBag = handlerBagDictionary.GetOrAdd((string)Request.Query.name ?? "Unknown");
+                var handlerBag = Bootstrapper.HandlerBagDictionary.GetOrAdd((string)Request.Query.name ?? "Unknown");
                 return handlerBag.CreateHandler();
             };
         }
