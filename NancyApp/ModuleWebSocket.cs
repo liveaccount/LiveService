@@ -10,7 +10,7 @@
         public ModuleWebSocket(IHandlerBagDictionary handlerBagDictionary)
             : base()
         {
-            WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
+            WebSocket["/websocket"] = _ =>
             {
                 var handlerBag = handlerBagDictionary.GetOrAdd((string)Request.Query.name ?? "Unknown");
                 return handlerBag.CreateHandler();
