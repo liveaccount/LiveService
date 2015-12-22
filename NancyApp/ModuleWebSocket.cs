@@ -19,36 +19,36 @@
     {
         private IWebSocketClient client;
 
+        private void SendToAll(byte[] data)
+        {
+            client.Send(data);
+        }
+
         private void SendToAll(string message)
         {
             client.Send(message);
         }
-
-        private void SendToAll(byte[] message)
-        {
-            client.Send(message);
-        }
-
+        
         public void OnOpen(IWebSocketClient client)
         {
             this.client = client;
 
-            SendToAll(string.Format("User connected to drawing board"));
+            SendToAll(string.Format("User connected."));
+        }
+
+        public void OnData(byte[] data)
+        {
+            SendToAll(data);
         }
 
         public void OnMessage(string message)
         {
-            SendToAll(string.Format("User says {0}", message));
-        }
-
-        public void OnData(byte[] message)
-        {
-            SendToAll(message);
+            SendToAll(string.Format("User says: {0}", message));
         }
 
         public void OnClose()
         {
-            SendToAll(string.Format("User disconnected from drawing board"));
+            SendToAll(string.Format("User disconnected."));
         }
 
         public void OnError()
