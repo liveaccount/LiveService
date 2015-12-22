@@ -1,18 +1,21 @@
 ﻿namespace NancyApp
 {
+    using System;
     using System.Collections.Concurrent;
 
     using Nancy.AspNet.WebSockets;
-    using System;
+
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
         public ModuleWebSocket()//(IHandlerBagDictionary handlerBagDictionary) : base("/websocket")
         {
+            var handlerBagDictionary = new HandlerBagDictionary();
+
             WebSocket["/websocket"] = _ => //WebSocket["/{path}"] = _ =>
             {
-                //var handlerBag = handlerBagDictionary.GetOrAdd((String)_.path);
-                return new HandlerBag().CreateHandler();//handlerBag.CreateHandler();
+                var handlerBag = handlerBagDictionary.GetOrAdd(Guid.NewGuid().ToString());
+                return handlerBag.CreateHandler();
             };
         }
     }
