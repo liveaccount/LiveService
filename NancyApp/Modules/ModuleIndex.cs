@@ -1,4 +1,4 @@
-﻿namespace NancyApp
+﻿namespace NancyApp.Modules
 {
     using Nancy;
 
