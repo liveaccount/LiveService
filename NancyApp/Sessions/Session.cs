@@ -88,7 +88,7 @@
             {
                 this.client = client;
 
-                SendToAll(string.Format("User {0} connected.", user));
+                SendToAll(string.Format("User {0} connected. Count {1}", user, session.handlers.Count));
             }
 
             public void OnData(byte[] data)
@@ -98,14 +98,14 @@
 
             public void OnMessage(string message)
             {
-                SendToAll(string.Format("User {0} says: {1} count {2}", user, message, session.handlers.Count));
+                SendToAll(string.Format("User {0} says: {1}", user, message));
             }
 
             public void OnClose()
             {
                 session.Deregister(this);
 
-                SendToAll(string.Format("User {0} disconnected.", user));
+                SendToAll(string.Format("User {0} disconnected. Count {1}", user, session.handlers.Count));
             }
 
             public void OnError()
