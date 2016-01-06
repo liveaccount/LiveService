@@ -64,24 +64,28 @@
 
             private void SendToAll(byte[] data)
             {
-                session.ForEachHandler(handler =>
-                {
-                    //if (handler != this)
-                    {
-                        handler.client.Send(data);
-                    }
-                });
+                //session.ForEachHandler(handler =>
+                //{
+                //    if (handler != this)
+                //    {
+                //        handler.client.Send(data);
+                //    }                    
+                //});
+
+                client.Send(data);
             }
 
             private void SendToAll(string message)
             {
-                session.ForEachHandler(handler =>
-                {
-                    //if (handler != this)
-                    {
-                        handler.client.Send(message);
-                    }
-                });
+                //session.ForEachHandler(handler =>
+                //{
+                //    if (handler != this)
+                //    {
+                //        handler.client.Send(message);
+                //    }
+                //});
+
+                client.Send(message);
             }
 
             public void OnOpen(IWebSocketClient client)
