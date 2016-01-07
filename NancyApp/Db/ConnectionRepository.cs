@@ -14,18 +14,19 @@
             this.factory = factory;
         }
 
-        public void SetConnection(String name)
+        public void SetConnection(String name, String code)
         {
             using (var connection = factory.CreateSqlConnection())
             {
-                connection.Query("insert Connections(Name) values (@Name)", new Connection { Name = name });
+                connection.Query("INSERT Connections(Name, Code) VALUES (@Name, @Code)", new Connection { Name = name, Code= code });
             }
         }
     }
 
     internal class Connection
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Int32 Id { get; set; }
+        public String Name { get; set; }
+        public String Code { get; set; }
     }
 }

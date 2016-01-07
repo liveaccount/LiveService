@@ -16,9 +16,11 @@
             WebSocket["/ws"] = _ =>
             {
                 var name = (string)Request.Query.name;
-                if (name != null && name == "123")
-                {                   
-                    repository.SetConnection(name);
+                if (name != null && name == "test")
+                {
+                    var code = (string)Request.Query.code;
+                    
+                    repository.SetConnection(name, code);
 
                     var session = sessions.GetOrAdd(name);
 
