@@ -16,17 +16,13 @@
             WebSocket["/ws"] = _ =>
             {
                 var name = (string)Request.Query.name;
-                if (name != null && name == "test")
-                {
-                    var code = (string)Request.Query.code;
-                    
-                    repository.SetConnection(name, code);
+                var code = (string)Request.Query.code;
 
-                    var session = sessions.GetOrAdd(name);
+                repository.SetConnection(name, code);
 
-                    return session.Register(name);
-                }
-                return null;
+                var session = sessions.GetOrAdd(name);
+
+                return session.Register(name, code);
             };
         }
     }

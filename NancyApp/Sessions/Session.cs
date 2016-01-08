@@ -7,20 +7,24 @@
 
     public class Session
     {
-        private readonly string name;
-        private readonly object guard = new object();
+        private readonly String name;
+        private readonly Object guard = new Object();
         private readonly IList<WebSocketHandler> handlers;
 
-        public Session(string name)
+        public Session()
         {
-            this.name = name;
-
             handlers = new List<WebSocketHandler>();
         }
 
-        public IWebSocketHandler Register(string user)
+        public Session(String name)
+            : this()
         {
-            var handler = new WebSocketHandler(this, user);
+            this.name = name;            
+        }
+
+        public IWebSocketHandler Register(String user, String code)
+        {
+            var handler = new WebSocketHandler(this, user, code);
 
             lock (guard)
             {
@@ -54,15 +58,17 @@
             private IWebSocketClient client;
 
             private readonly String user;
+            private readonly String code;
             private readonly Session session;
 
-            public WebSocketHandler(Session session, String user)
+            public WebSocketHandler(Session session, String user, String code)
             {
                 this.user = user;
+                this.code = code;
                 this.session = session;
             }
 
-            private void SendToAll(byte[] data)
+            private void SendToAll(Byte[] data)
             {
                 //session.ForEachHandler(handler =>
                 //{
@@ -75,7 +81,7 @@
                 client.Send(data);
             }
 
-            private void SendToAll(string message)
+            private void SendToAll(String message)
             {
                 //session.ForEachHandler(handler =>
                 //{
@@ -92,24 +98,24 @@
             {
                 this.client = client;
 
-                SendToAll(string.Format("User {0} connected. Count {1}", user, session.handlers.Count));
+                SendToAll(String.Format("User {0} connected. Count {1}", user, session.handlers.Count));
             }
 
-            public void OnData(byte[] data)
+            public void OnData(Byte[] data)
             {
                 SendToAll(data);
             }
 
-            public void OnMessage(string message)
+            public void OnMessage(String message)
             {
-                SendToAll(string.Format("User {0} says: {1}", user, message));
+                SendToAll(String.Format("User {0} says: {1}", user, message));
             }
 
             public void OnClose()
             {
                 session.Deregister(this);
 
-                SendToAll(string.Format("User {0} disconnected. Count {1}", user, session.handlers.Count));
+                SendToAll(String.Format("User {0} disconnected. Count {1}", user, session.handlers.Count));
             }
 
             public void OnError()
@@ -119,17 +125,17 @@
 
             #region Public Override Methods
 
-            public override string ToString()
+            public override String ToString()
             {
                 return user;
             }
 
-            public override int GetHashCode()
+            public override Int32 GetHashCode()
             {
                 return client.GetHashCode();
             }
 
-            public override bool Equals(object obj)
+            public override Boolean Equals(object obj)
             {
                 var other = obj as WebSocketHandler;
 
