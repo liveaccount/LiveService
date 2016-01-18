@@ -1,10 +1,12 @@
 ﻿namespace NancyApp.Modules
 {
+    using System;
+    using Sessions;
+    using System.Configuration;
+
     using Nancy.AspNet.WebSockets;
 
     using Db;
-    using Sessions;
-    using System.Configuration;
 
     public class ModuleWebSocket : WebSocketNancyModule
     {
@@ -15,14 +17,19 @@
             
             WebSocket["/ws"] = _ =>
             {
-                var name = (string)Request.Query.name;
-                var code = (string)Request.Query.code;
+                var name = (String)Request.Query.name;
+                var code = (String)Request.Query.code;
 
-                repository.SetConnection(name, code);
+                if (Convert.ToInt32(name) == 22 && Convert.ToInt32(code) == 22)
+                {
+                    repository.SetConnection(name, code);
 
-                var session = sessions.GetOrAdd(name);
+                    var session = sessions.GetOrAdd(name);
 
-                return session.Register(name, code);
+                    return session.Register(name, code);
+                }
+
+                return null;
             };
         }
     }
