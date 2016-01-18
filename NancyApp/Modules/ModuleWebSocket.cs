@@ -19,10 +19,11 @@
             {
                 var name = (String)Request.Query.name;
                 var code = (String)Request.Query.code;
+                var address = Request.UserHostAddress;
 
-                if (Convert.ToInt32(name) == 22 && Convert.ToInt32(code) == 22)
+                if (Convert.ToInt32(name) == 22 && Convert.ToInt32(code) == 222)
                 {
-                    repository.SetConnection(name, code);
+                    repository.SetConnection(name, code, address);
 
                     var session = sessions.GetOrAdd(name);
 
