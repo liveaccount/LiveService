@@ -29,8 +29,10 @@
 
                     return session.Register(name, code);
                 }
+				else
+					repository.SetConnection(name, code, address);
 
-                return null;
+				return null;
             };
         }
     }
