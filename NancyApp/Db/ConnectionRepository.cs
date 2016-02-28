@@ -14,18 +14,19 @@
             this.factory = factory;
         }
 
-        public void SetConnection(String name, String code, String address)
+        public void SetConnection(String name, String code, String address, Boolean status)
         {
             using (var connection = factory.CreateSqlConnection())
             {
-                connection.Query(@"INSERT Connections(Name, Code, Address)
-                                   VALUES (@Name, @Code, @Address)",
+                connection.Query(@"INSERT Connections(Name, Code, Address, Status)
+                                   VALUES (@Name, @Code, @Address, @Status)",
                                  new Connection
                                  {
                                      Name = name,
                                      Code = code,
-                                     Address = address
-                                 });
+                                     Address = address,
+									 Status = status
+								 });
             }
         }
     }
@@ -36,5 +37,6 @@
         public String Name { get; set; }
         public String Code { get; set; }
         public String Address { get; set; }
-    }
+		public Boolean Status { get; set; }
+	}
 }

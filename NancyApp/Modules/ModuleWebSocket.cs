@@ -23,14 +23,14 @@
 
                 if (Convert.ToInt32(name) == 22 && Convert.ToInt32(code) == 222)
                 {
-                    repository.SetConnection(name, code, address);
+                    repository.SetConnection(name, code, address, true);
 
                     var session = sessions.GetOrAdd(name);
 
                     return session.Register(name, code);
                 }
 				else
-					repository.SetConnection(name, code, address);
+					repository.SetConnection(name, code, address, false);
 
 				return null;
             };
