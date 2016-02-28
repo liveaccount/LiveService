@@ -83,15 +83,15 @@
 
             private void SendToAll(String message)
             {
-                //session.ForEachHandler(handler =>
-                //{
-                //    if (handler != this)
-                //    {
-                //        handler.client.Send(message);
-                //    }
-                //});
-
-                client.Send(message);
+				session.ForEachHandler(handler =>
+				{
+					if (handler != this)
+					{
+						handler.client.Send(message);
+					}
+				});
+				
+				//client.Send(message);
             }
 
             public void OnOpen(IWebSocketClient client)
