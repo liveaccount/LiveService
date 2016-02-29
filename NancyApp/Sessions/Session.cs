@@ -85,7 +85,7 @@
             {
 				session.ForEachHandler(handler =>
 				{
-					if (handler != this)
+					//if (handler != this)
 					{
 						handler.client.Send(message);
 					}
