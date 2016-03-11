@@ -14,13 +14,13 @@
             this.factory = factory;
         }
 
-        public void SetConnection(String name, String code, String address, Boolean status)
+        public void SetConnectionInfo(string name, string code, string address, bool status)
         {
             using (var connection = factory.CreateSqlConnection())
             {
                 connection.Query(@"INSERT Connections(Name, Code, Address, Status)
                                    VALUES (@Name, @Code, @Address, @Status)",
-                                 new Connection
+                                 new ConnectionInfo
                                  {
                                      Name = name,
                                      Code = code,
@@ -31,12 +31,12 @@
         }
     }
 
-    internal class Connection
+    internal class ConnectionInfo
     {
-        public Int32 Id { get; set; }
-        public String Name { get; set; }
-        public String Code { get; set; }
-        public String Address { get; set; }
-		public Boolean Status { get; set; }
+        public int Id { get; set; }
+        public bool Status { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Address { get; set; }
 	}
 }

@@ -7,7 +7,7 @@
 
     public interface ISessions
     {
-        Session GetOrAdd(String id);
+        Session GetOrAdd(string id);
     }
 
     public class Sessions : ISessions
@@ -19,7 +19,7 @@
             sessions = new ConcurrentDictionary<string, Session>();
         }
 
-        public Session GetOrAdd(String key)
+        public Session GetOrAdd(string key)
         {
             return sessions.GetOrAdd(key, k => new Session(k));
         }

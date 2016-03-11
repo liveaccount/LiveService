@@ -6,16 +6,16 @@
 
     public class DbConnectionFactory : IDbConnectionFactory
     {
-        private readonly String connectionString;
+        private readonly string connectionstring;
 
-        public DbConnectionFactory(String connectionString)
+        public DbConnectionFactory(string connectionstring)
         {
-            this.connectionString = connectionString;
+            this.connectionstring = connectionstring;
         }
 
         public IDbConnection CreateSqlConnection()
         {
-            var connection = new SqlConnection(connectionString);
+            var connection = new SqlConnection(connectionstring);
             connection.Open();
             return connection;
         }

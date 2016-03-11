@@ -4,20 +4,20 @@
     
     public class Client
     {
-        private readonly Int32 id;
-        private readonly String name;
+        private readonly int id;
+        private readonly string name;
 
-        public Int32 Id
+        public int Id
         {
             get { return id; }
         }
 
-        public String Name
+        public string Name
         {
             get { return name; }
         }
 
-        public Client(Int32 id, String name)
+        public Client(int id, string name)
         {
             this.id = id;
             this.name = name;

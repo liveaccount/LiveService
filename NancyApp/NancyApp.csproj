@@ -126,6 +126,8 @@
     <Compile Include="Db\ConnectionRepository.cs" />
     <Compile Include="Db\DbConnectionFactory.cs" />
     <Compile Include="Db\IDbConnectionFactory.cs" />
+    <Compile Include="Modules\ModuleConfig.cs" />
+    <Compile Include="Modules\ModuleLogin.cs" />
     <Compile Include="Sessions\Sessions.cs" />
     <Compile Include="Modules\ModuleIndex.cs">
       <SubType>Code</SubType>

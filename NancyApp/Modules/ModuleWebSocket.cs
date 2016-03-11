@@ -17,20 +17,20 @@
             
             WebSocket["/ws"] = _ =>
             {
-                var name = (String)Request.Query.name;
-                var code = (String)Request.Query.code;
+                var name = (string)Request.Query.name;
+                var code = (string)Request.Query.code;
                 var address = Request.UserHostAddress;
 
                 if (Convert.ToInt32(name) == 22 && Convert.ToInt32(code) == 222)
                 {
-                    repository.SetConnection(name, code, address, true);
+                    repository.SetConnectionInfo(name, code, address, true);
 
                     var session = sessions.GetOrAdd(name);
 
                     return session.Register(name, code);
                 }
 				else
-					repository.SetConnection(name, code, address, false);
+					repository.SetConnectionInfo(name, code, address, false);
 
 				return null;
             };
